@@ -1,12 +1,15 @@
 import game_state as s
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf 
+tf.disable_v2_behavior() 
 import os
 import json
 import math
 from timeit import default_timer as timer
 from .move_scoring import moveToVector
 import logging
-import random
+import random 
+from time import sleep 
 
 logger = logging.getLogger(__name__)
 
@@ -147,8 +150,13 @@ class NetworkBase():
             self.keep_prob: 1 - self.dropout_prob
         }
         self.train_step.run(session=self.sess, feed_dict=fd)
-        os.makedirs(self.save_path, exist_ok=True)
-        self.saver.save(self.sess, self.save_name)
+        os.makedirs(self.save_path, exist_ok=True) 
+        for _ in range(5):
+            try: 
+                self.saver.save(self.sess, self.save_name)
+                break 
+            except: 
+                sleep(.8)
         end = timer()
         count = len(batch)
         diff = end - start

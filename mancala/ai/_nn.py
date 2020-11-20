@@ -4,14 +4,17 @@
 from .lib import AiBase
 import game_state as s
 import random
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf 
+tf.disable_v2_behavior() 
 import json
 from timeit import default_timer as timer
 
 INPUT_SIZE = (s.NUM_PLAYERS * 7)
 OUTPUT_SIZE = 6
 HIDDEN_LAYER_SIZE = 128
-LEARNING_RATE = 0.05
+# LEARNING_RATE = 0.05
+LEARNING_RATE = 0.1
 BATCH_SIZE = 5000
 SAVE_PATH = "./data/model.ckpt"
 BETTER_MOVE = 0.5

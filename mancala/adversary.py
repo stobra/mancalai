@@ -43,6 +43,9 @@ def winloss(players, gps, games):
 def play_games(plist, lucky):
     batch_size = 5000
     trainingGames = 100
+    # batch_size = 500
+    # trainingGames = 100
+
     players = plist[:]
     time_sum = 0
     games = 0
@@ -87,3 +90,4 @@ def main(name1="nn", name2="nn"):
 
 if __name__ == '__main__':
     main(*sys.argv[1:])
+    # main(['nn1h128', 'nn3h80'], luck)

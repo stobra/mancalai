@@ -11,4 +11,4 @@ autopep8 --verbose --in-place --recursive --aggressive --exclude "${EXCLUDE}" .
 echo "Lint!"
 flake8 --exclude "${EXCLUDE}"
 echo "Test!"
-pytest --doctest-modules --ignore=webui
+pytest --doctest-modules --ignore=webui 

@@ -1,15 +1,20 @@
 FROM python:3.6
 
+RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 RUN python --version
 
 COPY ./deploy/requirements.ci ./
 RUN pip install --no-cache-dir -r requirements.ci
+RUN rm -r requirements.ci 
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+RUN rm -r requirements.txt 
 
 # COPY . .
 
-ENTRYPOINT [ "./deploy/dev-entry.sh" ]
+WORKDIR /usr/src/app
+CMD ["./deploy/dev-entry.sh"]
+

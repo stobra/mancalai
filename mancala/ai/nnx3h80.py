@@ -1,7 +1,9 @@
 import random
 from .lib import AiNNBase
 from .lib.nn_lib import NetworkBase, INPUT_SIZE
-import tensorflow as tf
+# import tensorflow as tf
+import tensorflow.compat.v1 as tf 
+tf.disable_v2_behavior() 
 MAX_BEADS = 48
 
 

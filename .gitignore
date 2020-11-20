@@ -110,4 +110,6 @@ run.log
 
 # mancalai specific
 training/
-data/
+# data/
+workspace.code-workspace 
+.vscode/

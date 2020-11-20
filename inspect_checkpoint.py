@@ -26,6 +26,9 @@ from tensorflow.python import pywrap_tensorflow
 from tensorflow.python.platform import app
 from tensorflow.python.platform import flags
 
+# pywrap_tensorflow.NewCheckpointReader() 
+print(pywrap_tensorflow.self_check())
+
 FLAGS = None
 
 
@@ -142,7 +145,8 @@ if __name__ == "__main__":
         nargs="?",
         const=True,
         type="bool",
-        default=False,
+        default=True,
+        # default=False,
         help="If True, print the names and values of all the tensors.")
     parser.add_argument(
         "--all_tensor_names",
@@ -157,4 +161,15 @@ if __name__ == "__main__":
         type=parse_numpy_printoption,
         help="Argument for numpy.set_printoptions(), in the form 'k=v'.")
     FLAGS, unparsed = parser.parse_known_args()
-    app.run(main=main, argv=[sys.argv[0]] + unparsed)
+    # app.run(main=main, argv=[sys.argv[0]] + unparsed) 
+
+    # print_tensors_in_checkpoint_file('', '', True,
+    #                                  all_tensor_names=True) 
+
+    reader = pywrap_tensorflow.NewCheckpointReader()
+    print(reader)
+    var_to_shape_map = reader.get_variable_to_shape_map()
+    print(var_to_shape_map)
+    for key in sorted(var_to_shape_map):
+        print("tensor_name: ", key)
+        print(reader.get_tensor(key))

@@ -159,3 +159,4 @@ def run(opponent):
 
 if __name__ == '__main__':
     run(*sys.argv[1:])
+    # run('n')

@@ -1,6 +1,7 @@
 import random
 from .lib import AiNNBase
-from .lib.nn5updown import NetworkBase
+from .lib.nn_lib_5updown import NetworkBase
+# from .lib.nn5updown import NetworkBase
 
 
 class Network(NetworkBase):
